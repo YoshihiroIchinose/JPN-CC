@@ -10,6 +10,9 @@
 ## ローカルの XML ファイルをアップロード
     New-DlpSensitiveInformationTypeRulePackage -FileData (Get-Content -Path "C:\Users\imiki\Desktop\Work\Comp\CC_Reference.xml" -Encoding Byte)
 
+## 一度アップロード済みで新しいバージョンの定義に更新の場合
+    Set-DlpSensitiveInformationTypeRulePackage -FileData (Get-Content -Path "C:\Users\imiki\Desktop\Work\Comp\CC_Reference.xml" -Encoding Byte)
+
 # Communication Complianceのポリシーを設定
 取り込んだ以下のカスタムの機密情報を使ってCommunication Complianceのポリシーを設定のこと
 
@@ -62,7 +65,7 @@ Q2.外為法
 ### 内容
 職場における食事や飲みの誘いなどに関するコミュニケーション。
 ### キーワード (信頼度60)
-"飲み","夕食","ディナー","食事","いい店","晩飯","一杯"  
+"飲み","夕食","ディナー","食事","いい店","晩飯","晩御飯","一杯"  
 ### 付随ワード1 (キーワードとセットで信頼度80) 
 "誘","行かない","どう","行く","行きませんか","いく","いきませんか"  
 ### 付随ワード2 (キーワードとセットで信頼度90)  
@@ -74,7 +77,7 @@ Q2.外為法
 ### キーワード (信頼度60)
 "クズ","バカ","馬鹿","アホ”,"あほ","役立たず","無能","頭がおかしい","使えない","死ね","死んでくれ","目障り","給料泥棒"  
 ### 付随ワード (キーワードとセットで信頼度80) 
-"無駄","クビ","失格","左遷","常識","当たり前"  
+"無駄","むだ","ムダ","クビ","くび","失格","左遷","常識","当たり前"
 
 ## H2.性急な要求
 ### 内容
