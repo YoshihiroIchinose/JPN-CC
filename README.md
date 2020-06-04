@@ -14,7 +14,7 @@
     Set-DlpSensitiveInformationTypeRulePackage -FileData (Get-Content -Path "C:\Users\imiki\Desktop\Work\Comp\CC_Reference.xml" -Encoding Byte)
 
 # Communication Complianceのポリシーを設定
-取り込んだ以下のカスタムの機密情報を使ってCommunication Complianceのポリシーを設定のこと
+取り込んだ以下のカスタムの機密情報を含むコミュニケーションを検出するよう Communication Compliance のポリシーを設定のこと。なおそれぞれのキーワードのみの検出の場合、精度 60 以上を対象とし、付随ワード含む検出を対象とする場合は精度を 80 以上で設定のこと。
 
 W1.働き方要注意ワード  
 S1.顧客満足関連  
