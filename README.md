@@ -1,5 +1,5 @@
-# JPN-CC
-こちらのプロジェクトでは、Office 365のCommunication Complianceを利用・検証するに当たって、職場にふさわしくないコミュニケーションを検出するための用語集を提供します。用語は、カスタムの機密情報の定義として [XML](https://github.com/YoshihiroIchinose/JPN-CC/blob/master/CC_Reference.xml) ファイルで用意していますので、ダウンロードの上、PowerShell で Office 365 に取り込んで利用ください。
+# Office 365 Commnucation Compliance 用、要注意サンプル用語集
+こちらのプロジェクトでは、Office 365のCommunication Complianceを利用・検証するに当たって、職場にふさわしくないコミュニケーションを検出するためのサンプルの用語集を提供します。用語は、カスタムの機密情報の定義として [XML](https://github.com/YoshihiroIchinose/JPN-CC/blob/master/CC_Reference.xml) ファイルで用意していますので、ダウンロードの上、PowerShell で Office 365 に取り込んで利用ください。
 
 # カスタムの機密情報として要注意ワードを XML で取り込み
 ## PowerShell より Exchange Online に接続
