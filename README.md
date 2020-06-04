@@ -3,15 +3,15 @@
 
 # カスタムの機密情報として要注意ワードを XML で取り込み
 ## PowerShell より Exchange Online に接続
-$UserCredential = Get-Credential  
-$Session = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri https://ps.compliance.protection.outlook.com/powershell-liveid/ -Credential $UserCredential -Authentication Basic -AllowRedirection  
-Import-PSSession $Session -DisableNameChecking  
+    $UserCredential = Get-Credential
+    $Session = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri https://ps.compliance.protection.outlook.com/powershell-liveid/ -Credential $UserCredential -Authentication Basic -AllowRedirection
+    Import-PSSession $Session -DisableNameChecking
 
 ## ローカルの XML ファイルをアップロード
-New-DlpSensitiveInformationTypeRulePackage -FileData (Get-Content -Path "C:\Users\imiki\Desktop\Work\Comp\CC_Reference.xml" -Encoding Byte)  
+    New-DlpSensitiveInformationTypeRulePackage -FileData (Get-Content -Path "C:\Users\imiki\Desktop\Work\Comp\CC_Reference.xml" -Encoding Byte)
 
 # Communication Complianceのポリシーを設定
-##取り込んだ以下のカスタムの機密情報を使ってCommunication Complianceのポリシーを設定のこと
+取り込んだ以下のカスタムの機密情報を使ってCommunication Complianceのポリシーを設定のこと
 
 W1.働き方要注意ワード  
 S1.顧客満足関連  
