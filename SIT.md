@@ -1,7 +1,7 @@
 # 日本向け個人情報の定義
-Office 365 DLP 向けに日本での個人情報に該当するパターンを定義するものです。
+Office 365 DLP 向けに日本での個人情報に該当するパターンを定義するものです。現時点で住所と電話番号を定義しています。用語は、カスタムの機密情報の定義として [XML](https://github.com/YoshihiroIchinose/JPN-CC/blob/master/JPN_SIT.xml) ファイルで用意していますので、ダウンロードの上、PowerShell で Office 365 に取り込んで利用ください。
 
-# カスタムの機密情報として定義 XML で取り込み
+# カスタムの機密情報として XML を取り込み
 ## PowerShell より Exchange Online に接続
     $UserCredential = Get-Credential
     $Session = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri https://ps.compliance.protection.outlook.com/powershell-liveid/ -Credential $UserCredential -Authentication Basic -AllowRedirection
@@ -14,15 +14,17 @@ Office 365 DLP 向けに日本での個人情報に該当するパターンを�
     Set-DlpSensitiveInformationTypeRulePackage -FileData (Get-Content -Path "C:\Users\imiki\Desktop\Work\Comp\JPN_SIT.xml" -Encoding Byte)
     
 # DLPのポリシーを設定
-取り込んだ以下のカスタムの個人情報を含むファイル等を検出するよう DLP のポリシーを設定のこと。
+取り込んだ以下のカスタムの個人情報を含むファイル等を検出するよう DLP のポリシーを設定下さい。
 SIT1.住所  
 SIT2.電話番号  
 
 # 住所
+以下の正規表現で都道府県・市区町村＋全角文字で構成される文字列をマッチングし日本での住所の表現を検出します。
 ## 正規表現
     (?:北海道|東京都|(?:大阪|京都)府|(?:神奈川|和歌山|鹿児島)県|[^\x01-\x7E　]{2}県)[\s　]?[^\x01-\x7E　]{1,6}[市郡区町村][\s　]?[^\x01-\x7E　]
 # 電話番号
-電話番号の定義では以下のパターンを全角数字も考慮して検出します。また数字の桁数が合ってないものを排除するための処理を正規表現で行っています。
+以下のパターンを全角数字も考慮して検出します。また数字の桁数が合ってないものを排除するための処理を正規表現で行っています。市外局番なしの電話番号、()での市外局番の表現、フリーダイヤルなどは対象外としています。
+
 ## 固定電話
 ### 0x-xxxx-xxxx のパターンの正規表現
     (^|[^0-9])0\d-\d{4}-\d{4}($|[^0-9])
