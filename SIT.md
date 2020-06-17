@@ -25,15 +25,15 @@ SIT2.電話番号
 # 電話番号
 ## 以下の電話番号のパターンを検出します。  
 2桁市外局番 0x-xxxx-xxxx  
-3桁市外局番 0xx-xxx-xxxx
-4桁市外局番 0xxx-xx-xxxx
-5桁市外局番 0xxxx-x-xxxx
+3桁市外局番 0xx-xxx-xxxx  
+4桁市外局番 0xxx-xx-xxxx  
+5桁市外局番 0xxxx-x-xxxx  
 IP電話 050-xxxx-xxxx  
 携帯 070-xxxx-xxxx, 080-xxxx-xxxx, 090-xxxx-xxxx  
-## 対象外のパータン
+## 対象外のパータン  
 市外局番の() (0x)-xxxx-xxxx  
-フリーダイヤル 0120-xxx-xxx
-国番号含む表現 +81-x-xxxx-xxxx
+フリーダイヤル 0120-xxx-xxx  
+国番号含む表現 +81-x-xxxx-xxxx  
 
 ## Office 365 での注意事項
 ### 全角英数字が半角英数字に事前に変換される
