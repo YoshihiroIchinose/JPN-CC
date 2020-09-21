@@ -2,6 +2,9 @@
 Office 365 DLP 向けに日本での個人情報に該当するパターンを定義するものです。現時点で住所と電話番号を定義しています。用語は、カスタムの機密情報の定義として [XML](https://github.com/YoshihiroIchinose/JPN-CC/blob/master/JPN_SIT.xml) ファイルで用意していますので、ダウンロードの上、PowerShell で Office 365 に取り込んで利用ください。他にも日本向けの Communication Compliance 用の用語集の定義はこちらの[ページ](https://github.com/YoshihiroIchinose/JPN-CC/blob/master/README.md) で紹介しています。
 
 # カスタムの機密情報として XML を取り込み
+## 一度も PC 上で実行していない場合、管理者権限の PowerShell よりスクリプトを許可
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+
 ## PowerShell より Exchange Online に接続
     $UserCredential = Get-Credential
     $Session = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri https://ps.compliance.protection.outlook.com/powershell-liveid/ -Credential $UserCredential -Authentication Basic -AllowRedirection
