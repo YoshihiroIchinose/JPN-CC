@@ -3,7 +3,7 @@ Office 365 DLP 向けに日本での個人情報に該当するパターンを�
 
 # カスタムの機密情報として XML を取り込み
 ## 一度も PC 上で実行していない場合、管理者権限の PowerShell よりスクリプトを許可
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 
 ## PowerShell より Exchange Online に接続
     $UserCredential = Get-Credential
