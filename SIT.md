@@ -40,7 +40,7 @@ SIT3.メールリンク
 5桁市外局番 0xxxx-x-xxxx  
 IP電話 050-xxxx-xxxx  
 携帯 070-xxxx-xxxx, 080-xxxx-xxxx, 090-xxxx-xxxx  
-## 対象外のパータン  
+## 対象外のパターン
 市外局番の() (0x)-xxxx-xxxx  
 フリーダイヤル 0120-xxx-xxx  
 国番号含む表現 +81-x-xxxx-xxxx  
