@@ -1,11 +1,14 @@
 # Office 365 Communication Compliance 用、要注意サンプル用語集
 こちらのプロジェクトでは、Office 365のCommunication Complianceを利用・検証するに当たって、職場にふさわしくないコミュニケーションを検出するためのサンプルの用語集を提供します。用語は、カスタムの機密情報の定義として [XML](https://github.com/YoshihiroIchinose/JPN-CC/blob/master/CC_Reference.xml) ファイルで用意していますので、ダウンロードの上、PowerShell で Office 365 に取り込んで利用ください。なお 2020 年 6 月の時点では、Office 365 の Exchange/Teams/Skype for Busines/Yammer のうち、Exchange でのみ日本語でのキーワードの検出を確認しています。その他ソースの対応は、Office 365 での日本語ワードブレーカーのアップデートを待つ必要があります。他にも日本向けの住所や電話番号など個人情報の定義はこちらの[ページ](https://github.com/YoshihiroIchinose/JPN-CC/blob/master/SIT.md) で紹介しています。
 
+# 事前に一度実施
+## PowerShellを管理権限で立ち上げて以下を実行
+    Import-Module ExchangeOnlineManagement
+    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+
 # カスタムの機密情報として要注意ワードを XML で取り込み
 ## PowerShell より Exchange Online に接続
-    $UserCredential = Get-Credential
-    $Session = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri https://ps.compliance.protection.outlook.com/powershell-liveid/ -Credential $UserCredential -Authentication Basic -AllowRedirection
-    Import-PSSession $Session -DisableNameChecking
+    Connect-IPPSSession
 
 ## ローカルの XML ファイルをアップロード
     New-DlpSensitiveInformationTypeRulePackage -FileData (Get-Content -Path "C:\Users\imiki\Desktop\Work\Comp\CC_Reference.xml" -Encoding Byte)
