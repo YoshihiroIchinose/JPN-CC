@@ -3,11 +3,12 @@
 
 # 事前に一度実施
 ## PowerShellを管理権限で立ち上げて以下を実行
-    Import-Module ExchangeOnlineManagement
     Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+    Install-Module -Name ExchangeOnlineManagement
 
 # カスタムの機密情報として要注意ワードを XML で取り込み
 ## PowerShell より Exchange Online に接続
+    Import-Module ExchangeOnlineManagement
     Connect-IPPSSession
 
 ## ローカルの XML ファイルをアップロード
