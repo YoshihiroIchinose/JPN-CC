@@ -2,7 +2,7 @@
 Office 365 DLP 向けに日本での個人情報に該当するパターンを定義するものです。現時点で住所と電話番号を定義しています。用語は、カスタムの機密情報の定義として [XML](https://github.com/YoshihiroIchinose/JPN-CC/blob/master/JPN_SIT.xml) ファイルで用意していますので、ダウンロードの上、PowerShell で Office 365 に取り込んで利用ください。他にも日本向けの Communication Compliance 用の用語集の定義はこちらの[ページ](https://github.com/YoshihiroIchinose/JPN-CC/blob/master/README.md) で紹介しています。
 
 # 事前に一度実施
-## PowerShellを管理権限で立ち上げて以下を実行
+## PowerShell を管理権限で立ち上げて以下を実行
     Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
     Install-Module -Name ExchangeOnlineManagement
     
@@ -17,15 +17,19 @@ Office 365 DLP 向けに日本での個人情報に該当するパターンを�
 ## 一度アップロード済みで新しいバージョンの定義に更新の場合
     Set-DlpSensitiveInformationTypeRulePackage -FileData (Get-Content -Path "C:\Users\imiki\Desktop\Work\Comp\JPN_SIT.xml" -Encoding Byte)
     
-# DLPのポリシーを設定
+# DLP のポリシーを設定
 取り込んだ以下のカスタムの個人情報定義を利用して、Office 365のDLP のポリシー等を設定下さい。それぞれ該当するものが見つかれば信頼度 80 でマッチします。  
 SIT1.住所  
 SIT2.電話番号  
 SIT3.メールリンク  
-SIT4.汎用GUID  
+SIT4.汎用 GUID  
 
 # SIT1.住所
 以下の正規表現で都道府県＋市区町村＋全角文字で構成される文字列をマッチングし日本での住所の表現を検出します。
+## 以下のようなパターンを検出します。  
+東京都港区港南  
+北海道札幌市中央区  
+
 ## 正規表現
     (北海道|東京都|(大阪|京都)府|(神奈川|和歌山|鹿児島)県|[^\x01-\x7E　]{2}県)[\s　]?[^\x01-\x7E　]{1,6}[市郡区町村][\s　]?[^\x01-\x7E　]
 
@@ -86,12 +90,16 @@ Office 365 内のテキストのマッチングにおいては、全角英数字
 | - | EFBC8D | U+FF0D | Fullwidth Hyphen-Minus | x |
 
 # SIT3.メールリンク
-Office ファイルに記載され mailto のリンクになっているメールアドレスを検出します。  
+メール アドレスとなる文字列ではなく、Office ファイルに記載され mailto のリンクになっているメールアドレスを検出します。  
 ## 正規表現
     mailto:[\w\-.!#$%&'*+\/=?^_`{|}~]+@[\w\-_]+\.[\w\-_]+
 
-# SIT4.汎用GUID
-GUID とマッチする正規表現です。
+# SIT4.汎用 GUID
+GUID とマッチする正規表現です。  
+## 以下のようなパターンを検出します。  
+30075659-4d0a-44d9-95bf-a8a6455ab1b1  
+{e464277e-a047-4a4d-9213-680152c9d94a}  
+
 ## 正規表現
     (?<![\w-])[{]?[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}[}]?(?![\w-])
     
